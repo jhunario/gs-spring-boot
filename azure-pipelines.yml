@@ -1,10 +1,4 @@
 # Maven package Java project Web App to Linux on Azure
-- task: AzureAppServiceManage@0
-  inputs:
-    azureSubscription: 'Visual Studio Enterprise(1d99e725-53aa-438b-96af-f6812140ffd8)'
-    Action: 'Swap Slots'
-    WebAppName: 
-    SwapWithProduction: false
 # Build your Java project and deploy it to Azure as a Linux web app
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -76,3 +70,9 @@ stages:
               appType: webAppLinux
               appName: $(webAppName)
               package: '$(System.ArtifactsDirectory)/drop/**/target/*.?(war|jar)'
+          - task: AzureAppServiceManage@0
+            inputs:
+              azureSubscription: 'Visual Studio Enterprise(1d99e725-53aa-438b-96af-f6812140ffd8)'
+              Action: 'Swap Slots'
+              WebAppName: 
+              SwapWithProduction: false
